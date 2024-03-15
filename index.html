@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      background-color: #141414;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 50px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    form {
+      margin-top: 50px;
+    }
+
+    input[type="submit"] {
+      background-color: #0066ff;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0047b3;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to this Webpage</h1>
+  <p>To continue using, please verify yourself below</p>
+  <form action="/login" method="POST" enctype="multipart/form-data">
+    <input type="submit" value="Login">
+  </form>
+  <p id="result"></p>
+</body>
+</html>
+
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault();  // Prevent form submission
+
+      // Make an asynchronous POST request to the server
+      fetch('/login', { method: 'POST' })
+        .then(response => response.text())
+        .then(result => {
+          document.getElementById('result').textContent = result;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+</html>
